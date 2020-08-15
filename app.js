@@ -1,7 +1,28 @@
 import { h, render } from 'https://unpkg.com/preact@latest?module'
-import { useState } from 'https://unpkg.com/preact@latest/hooks/dist/hooks.module.js?module'
+import { useState, useEffect } from 'https://unpkg.com/preact@latest/hooks/dist/hooks.module.js?module'
 
-const audioContext = new AudioContext()
+const fileToArrayBuffer = (file, takeArrayBuffer) => {
+  const reader = new FileReader()
+  reader.onloadend = e => takeArrayBuffer(e.target.result)
+  reader.readAsArrayBuffer(file)
+}
+
+const arrayBufferToBase64 = arrayBuffer => {
+  const bytes = (new Uint8Array(arrayBuffer))
+  const binary = bytes.reduce(
+    (acc, next) => acc += String.fromCharCode(next),
+    ''
+  )
+  return btoa(binary)
+}
+
+const base64ToArrayBuffer = base64 => {
+  const binary = atob(base64)
+  const bytes = (new Uint8Array(binary.length)).map(
+    (_, index) => binary.charCodeAt(index)
+  )
+  return bytes.buffer
+}
 
 const ChooseFile = ({ takeFile }) => (
   h(
@@ -14,28 +35,33 @@ const ChooseFile = ({ takeFile }) => (
   )
 )
 
-const fileToAudioBuffer = (file, takeAudioBuffer) => {
-  const reader = new FileReader()
+const useSessionStorage = (arrayBuffer, setArrayBuffer) => {
+  useEffect(() => {
+    const fromSessionStorage = sessionStorage.getItem('array-buffer')
+    if (!arrayBuffer && fromSessionStorage) {
+      setArrayBuffer(base64ToArrayBuffer(fromSessionStorage))
+    }
+  })
 
-  reader.onloadend = async e => {
-    const arrayBuffer = event.target.result
-    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer)
-
-    takeAudioBuffer(audioBuffer)
-  }
-
-  reader.readAsArrayBuffer(file)
+  useEffect(() => {
+    if (arrayBuffer) {
+      sessionStorage.setItem('array-buffer', arrayBufferToBase64(arrayBuffer))
+    }
+  }, [arrayBuffer])
 }
 
 const App = () => {
-  const [audioBuffer, setAudioBuffer] = useState(undefined)
+  const [arrayBuffer, setArrayBuffer] = useState(undefined)
 
-  console.log(audioBuffer)
+  useSessionStorage(arrayBuffer, setArrayBuffer)
+
+  console.log(arrayBuffer)
 
   const takeFile = file => {
-    fileToAudioBuffer(file, audioBuffer => {
-      setAudioBuffer(audioBuffer)
-    })
+    fileToArrayBuffer(
+      file,
+      arrayBuffer => setArrayBuffer(arrayBuffer)
+    )
   }
 
   return h(ChooseFile, { takeFile })
