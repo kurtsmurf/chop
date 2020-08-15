@@ -1,7 +1,7 @@
 import { h, render } from 'https://unpkg.com/preact@latest?module'
 import { useState } from 'https://unpkg.com/preact@latest/hooks/dist/hooks.module.js?module'
-import { useSessionStorage } from './custom-hooks.js'
-import { ChooseFile } from './choose-file.js'
+import { useSessionStorage } from './hooks/use-session-storage.js'
+import { ChooseFile } from './components/choose-file.js'
 
 const App = () => {
   const [arrayBuffer, setArrayBuffer] = useState(null)
