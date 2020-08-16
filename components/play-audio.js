@@ -24,13 +24,19 @@ export const PlayAudio = ({ arrayBuffer }) => {
     }
   }, [arrayBuffer])
 
+
+  // className: 'play-audio',
+
+
   return (
     h(
-      'button',
-      {
-        onClick: () => playAudio(audioBuffer)
-      },
-      'Play'
+      'div',
+      { className: 'play-audio' },
+      h(
+        'button',
+        { onClick: () => playAudio(audioBuffer) },
+        'Play',
+      ),
     )
   )
 }

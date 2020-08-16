@@ -16,12 +16,16 @@ export const ChooseFile = ({ takeArrayBuffer }) => {
 
   return (
     h(
-      'input',
-      {
-        type: 'file',
-        accept: 'audio/*',
-        onChange: e => takeFile(e.target.files[0])
-      }
+      'div',
+      { className: 'choose-file' },
+      h(
+        'input',
+        {
+          type: 'file',
+          accept: 'audio/*',
+          onChange: e => takeFile(e.target.files[0])
+        }
+      )
     )
   )
 }

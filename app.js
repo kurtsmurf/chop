@@ -15,12 +15,10 @@ const App = () => {
 
   useSessionStorage(ab_copy, setArrayBuffer, 'array-buffer')
 
-  console.log(arrayBuffer)
-
   return (
     h(
       'div',
-      {},
+      { className: 'app' },
       h(ChooseFile, { takeArrayBuffer: setArrayBuffer }),
       h(PlayAudio, { arrayBuffer })
     )
