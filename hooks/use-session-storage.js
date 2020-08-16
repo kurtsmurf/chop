@@ -1,4 +1,4 @@
-import { useEffect } from '../deps/web_modules/preact/hooks.js' // 'https://unpkg.com/preact@latest/hooks/dist/hooks.module.js?module'
+import { useEffect } from '../deps/web_modules/preact/hooks.js'
 
 const arrayBufferToBase64 = arrayBuffer => {
   const bytes = (new Uint8Array(arrayBuffer))
