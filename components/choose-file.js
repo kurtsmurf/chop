@@ -1,4 +1,4 @@
-import { h } from 'https://unpkg.com/preact@latest?module'
+import { h } from '../deps/web_modules/preact.js' // 'https://unpkg.com/preact@latest?module'
 
 const fileToArrayBuffer = (file, takeArrayBuffer) => {
   const reader = new FileReader()

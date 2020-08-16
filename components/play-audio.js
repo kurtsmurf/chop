@@ -1,5 +1,5 @@
-import { h } from 'https://unpkg.com/preact@latest?module'
-import { useState, useEffect } from 'https://unpkg.com/preact@latest/hooks/dist/hooks.module.js?module'
+import { h } from '../deps/web_modules/preact.js' // 'https://unpkg.com/preact@latest?module'
+import { useState, useEffect } from '../deps/web_modules/preact/hooks.js' // 'https://unpkg.com/preact@latest/hooks/dist/hooks.module.js?module'
 
 const audioContext = new AudioContext()
 

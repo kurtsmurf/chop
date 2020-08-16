@@ -1,5 +1,5 @@
-import { h, render } from 'https://unpkg.com/preact@latest?module'
-import { useState, useEffect } from 'https://unpkg.com/preact@latest/hooks/dist/hooks.module.js?module'
+import { h, render } from './deps/web_modules/preact.js' // 'https://unpkg.com/preact@latest?module'
+import { useState } from './deps/web_modules/preact/hooks.js' // 'https://unpkg.com/preact@latest/hooks/dist/hooks.module.js?module'
 import { useSessionStorage } from './hooks/use-session-storage.js'
 import { ChooseFile } from './components/choose-file.js'
 import { PlayAudio } from './components/play-audio.js'
