@@ -1,18 +1,13 @@
 import { h } from '../deps/web_modules/preact.js'
 
-const fileToArrayBuffer = (file, takeArrayBuffer) => {
+const fileToArrayBuffer = takeArrayBuffer => file => {
   const reader = new FileReader()
   reader.onloadend = e => takeArrayBuffer(e.target.result)
   reader.readAsArrayBuffer(file)
 }
 
 export const ChooseFile = ({ takeArrayBuffer }) => {
-  const takeFile = file => {
-    fileToArrayBuffer(
-      file,
-      arrayBuffer => takeArrayBuffer(arrayBuffer)
-    )
-  }
+  const takeFile = fileToArrayBuffer(takeArrayBuffer)
 
   return (
     h(
