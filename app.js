@@ -1,21 +1,7 @@
 import { h, render } from './deps/web_modules/preact.js'
 import { useState } from './deps/web_modules/preact/hooks.js'
 import { useSessionStorage } from './hooks/use-session-storage.js'
-import { ChooseFile } from './components/choose-file.js'
-import { PlayAudio } from './components/play-audio.js'
-
-
-const TopLevel = ({ arrayBuffer, setArrayBuffer }) =>
-  h(
-    'div',
-    { className: 'app' },
-    h(ChooseFile, { takeArrayBuffer: setArrayBuffer }),
-    h(PlayAudio, { arrayBuffer })
-  )
-
-
-
-
+import { TopLevel } from './components/top-level.js'
 
 const App = () => {
   const [arrayBuffer, setArrayBuffer] = useState(null)

@@ -24,10 +24,6 @@ export const PlayAudio = ({ arrayBuffer }) => {
     }
   }, [arrayBuffer])
 
-
-  // className: 'play-audio',
-
-
   return (
     h(
       'div',
