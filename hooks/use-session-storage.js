@@ -1,7 +1,7 @@
 import { useEffect } from '../deps/web_modules/preact/hooks.js'
 
 const arrayBufferToBase64 = arrayBuffer => {
-  const bytes = (new Uint8Array(arrayBuffer))
+  const bytes = new Uint8Array(arrayBuffer)
   const binary = bytes.reduce(
     (acc, next) => acc += String.fromCharCode(next),
     ''
